@@ -15,7 +15,7 @@ type alias Model =
 
 init : ( Model, Cmd Msg )
 init =
-    ( { ship = 5 }, Cmd.none )
+    ( { ship = 15 }, Cmd.none )
 
 
 

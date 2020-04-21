@@ -34,12 +34,13 @@ aside {
 
 .ship {
   position: absolute;
-  left: 48.25%;
-  text-align: center;
+  left: 50%;
+  margin-left: -1rem;
 }
 
 .ship img {
   height: 2rem;
+  width: 2rem;
 }
 
 .floating {
@@ -47,7 +48,6 @@ aside {
   animation-duration: 5s;
   animation-iteration-count: infinite;
   animation-timing-function: ease-out;
-  margin-left: 0px;
   margin-top: 5px;
 }
 
