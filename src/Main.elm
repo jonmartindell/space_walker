@@ -1,7 +1,7 @@
 module Main exposing (..)
 
 import Browser
-import Html exposing (Html, aside, div, h1, img, text)
+import Html exposing (Html, aside, div, h1, h6, img, text)
 import Html.Attributes exposing (class, src, style)
 
 
@@ -38,40 +38,43 @@ update msg model =
 view : Model -> Html Msg
 view model =
     div [ class "main" ]
-        [ aside []
+        ([ aside []
             [ text (String.concat [ "Ship: ", String.fromInt model.ship, "x from Sun" ]) ]
-        , h1 []
+         , h1 []
             [ text "Sun" ]
-        , div [ class "space_dot" ]
+         , shipView model
+         ]
+            ++ dots 10
+            ++ [ planetView "Mercury" model]
+            ++ dots 19
+            ++ [ planetView "Venus" model]
+            ++ dots 26
+            ++ [ planetView "Earth" model]
+        )
+
+
+dots : Int -> List (Html Msg)
+dots count =
+    List.repeat count
+        (div [ class "space_dot" ]
             [ text "⋅" ]
-        , div [ class "space_dot" ]
-            [ text "⋅" ]
-        , div [ class "space_dot" ]
-            [ text "⋅" ]
-        , div [ class "space_dot" ]
-            [ text "⋅" ]
-        , div [ class "space_dot" ]
-            [ text "⋅" ]
-        , div [ class "space_dot" ]
-            [ text "⋅" ]
-        , div
-            [ class "ship floating"
-            , style "top" (String.append (String.fromInt model.ship) "rem")
-            ]
-            [ img [ src "%PUBLIC_URL%/shuttle.png" ]
-                []
-            ]
-        , div [ class "space_dot" ]
-            [ text "⋅" ]
-        , div [ class "space_dot" ]
-            [ text "⋅" ]
-        , div [ class "space_dot" ]
-            [ text "⋅" ]
-        , div [ class "space_dot" ]
-            [ text "⋅" ]
-        , div [ class "space_dot" ]
-            [ text "⋅" ]
+        )
+
+
+shipView : Model -> Html Msg
+shipView model =
+    div
+        [ class "ship floating"
+        , style "top" (String.append (String.fromInt model.ship) "rem")
         ]
+        [ img [ src "%PUBLIC_URL%/shuttle.png" ]
+            []
+        ]
+
+
+planetView : String -> Model -> Html Msg
+planetView planet model =
+    h6 [] [ text planet ]
 
 
 
