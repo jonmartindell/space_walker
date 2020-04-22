@@ -1,4 +1,4 @@
-module Main exposing (..)
+port module Main exposing (..)
 
 import Browser
 import Html exposing (Html, aside, div, h1, h6, img, text)
@@ -10,12 +10,30 @@ import Html.Attributes exposing (class, src, style)
 
 
 type alias Model =
-    { ship : Int }
+    { ship : Int
+    , temp : String
+    }
 
 
 init : ( Model, Cmd Msg )
 init =
-    ( { ship = 15 }, Cmd.none )
+    ( { ship = 14, temp = "bar" }, Cmd.none )
+
+
+
+---- PORTS -----
+
+
+port incomingGeoData : (String -> msg) -> Sub msg
+
+
+
+---- SUBSCRIPTIONS ----
+
+
+subscriptions : Model -> Sub Msg
+subscriptions _ =
+    incomingGeoData NewGeoData
 
 
 
@@ -24,11 +42,17 @@ init =
 
 type Msg
     = NoOp
+    | NewGeoData String
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
-    ( model, Cmd.none )
+    case msg of
+        NoOp ->
+            ( model, Cmd.none )
+
+        NewGeoData string ->
+            ( { model | temp = string }, Cmd.none )
 
 
 
@@ -41,27 +65,27 @@ view model =
         ([ aside []
             [ text (String.concat [ "Ship: ", String.fromInt model.ship, "x from Sun" ]) ]
          , h1 []
-            [ text "Sun" ]
+            [ text <| "Sun" ++ model.temp ]
          , shipView model
          ]
             ++ dots 10
-            ++ [ planetView "Mercury" model]
+            ++ [ planetView "Mercury" model ]
             ++ dots 9
-            ++ [ planetView "Venus" model]
+            ++ [ planetView "Venus" model ]
             ++ dots 7
-            ++ [ planetView "Earth" model]
+            ++ [ planetView "Earth" model ]
             ++ dots 14
-            ++ [ planetView "Mars" model]
+            ++ [ planetView "Mars" model ]
             ++ dots 95
-            ++ [ planetView "Jupiter" model]
+            ++ [ planetView "Jupiter" model ]
             ++ dots 112
-            ++ [ planetView "Saturn" model]
+            ++ [ planetView "Saturn" model ]
             ++ dots 249
-            ++ [ planetView "Uranus" model]
+            ++ [ planetView "Uranus" model ]
             ++ dots 281
-            ++ [ planetView "Neptune" model]
+            ++ [ planetView "Neptune" model ]
             ++ dots 242
-            ++ [ planetView "Pluto" model]
+            ++ [ planetView "Pluto" model ]
         )
 
 
@@ -99,5 +123,5 @@ main =
         { view = view
         , init = \_ -> init
         , update = update
-        , subscriptions = always Sub.none
+        , subscriptions = subscriptions
         }
