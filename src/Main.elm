@@ -46,10 +46,22 @@ view model =
          ]
             ++ dots 10
             ++ [ planetView "Mercury" model]
-            ++ dots 19
+            ++ dots 9
             ++ [ planetView "Venus" model]
-            ++ dots 26
+            ++ dots 7
             ++ [ planetView "Earth" model]
+            ++ dots 14
+            ++ [ planetView "Mars" model]
+            ++ dots 95
+            ++ [ planetView "Jupiter" model]
+            ++ dots 112
+            ++ [ planetView "Saturn" model]
+            ++ dots 249
+            ++ [ planetView "Uranus" model]
+            ++ dots 281
+            ++ [ planetView "Neptune" model]
+            ++ dots 242
+            ++ [ planetView "Pluto" model]
         )
 
 
