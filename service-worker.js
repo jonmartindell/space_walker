@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/space_walker/precache-manifest.f1ca313b056d059d8e47fc8dfba619eb.js"
+  "/space_walker/precache-manifest.51bfc43e497a45fccdeb9bcd83ebccb1.js"
 );
 
 workbox.core.skipWaiting();
