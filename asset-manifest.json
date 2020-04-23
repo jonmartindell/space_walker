@@ -1,7 +1,7 @@
 {
   "main.css": "/space_walker/static/css/main.d8e221f2.chunk.css",
-  "main.js": "/space_walker/static/js/main.06a01e35.chunk.js",
-  "main.js.map": "/space_walker/static/js/main.06a01e35.chunk.js.map",
+  "main.js": "/space_walker/static/js/main.605b53c1.chunk.js",
+  "main.js.map": "/space_walker/static/js/main.605b53c1.chunk.js.map",
   "runtime~main.js": "/space_walker/static/js/runtime~main.757d13f7.js",
   "runtime~main.js.map": "/space_walker/static/js/runtime~main.757d13f7.js.map",
   "vendors~main.js": "/space_walker/static/js/vendors~main.7aa09ec8.chunk.js",
@@ -11,6 +11,6 @@
   "index.html": "/space_walker/index.html",
   "logo.svg": "/space_walker/logo.svg",
   "manifest.json": "/space_walker/manifest.json",
-  "precache-manifest.51bfc43e497a45fccdeb9bcd83ebccb1.js": "/space_walker/precache-manifest.51bfc43e497a45fccdeb9bcd83ebccb1.js",
+  "precache-manifest.3a84682a3fd335c818d3567b2d860fac.js": "/space_walker/precache-manifest.3a84682a3fd335c818d3567b2d860fac.js",
   "shuttle.png": "/space_walker/shuttle.png"
 }
