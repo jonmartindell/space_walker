@@ -9,7 +9,7 @@
   height: inherit;
 }
 
-.main {
+body {
   background-color: black;
   color: orange;
   text-align: center;
