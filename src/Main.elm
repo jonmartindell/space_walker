@@ -11,20 +11,19 @@ import Html.Attributes exposing (class, src, style)
 
 type alias Model =
     { ship : Int
-    , temp : String
     }
 
 
 init : ( Model, Cmd Msg )
 init =
-    ( { ship = 14, temp = "bar" }, Cmd.none )
+    ( { ship = 0 }, Cmd.none )
 
 
 
 ---- PORTS -----
 
 
-port incomingGeoData : (String -> msg) -> Sub msg
+port incomingGeoData : (Int -> msg) -> Sub msg
 
 
 
@@ -42,7 +41,7 @@ subscriptions _ =
 
 type Msg
     = NoOp
-    | NewGeoData String
+    | NewGeoData Int
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -51,8 +50,8 @@ update msg model =
         NoOp ->
             ( model, Cmd.none )
 
-        NewGeoData string ->
-            ( { model | temp = string }, Cmd.none )
+        NewGeoData int ->
+            ( { model | ship = int }, Cmd.none )
 
 
 
@@ -63,9 +62,9 @@ view : Model -> Html Msg
 view model =
     div [ class "main" ]
         ([ aside []
-            [ text (String.concat [ "Ship: ", String.fromInt model.ship, "x from Sun" ]) ]
+            [ text (String.concat [ "Ship: ", String.fromInt model.ship, "y from Sun" ]) ]
          , h1 []
-            [ text <| "Sun" ++ model.temp ]
+            [ text <| "Sun" ]
          , shipView model
          ]
             ++ dots 10
