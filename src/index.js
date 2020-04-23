@@ -35,6 +35,11 @@ document.getElementById("start").addEventListener("click", function () {
     },
     function (error) {
       alert("Error occurred getting position. Error code: " + error.code);
+    },
+    {
+      enableHighAccuracy: true,
+      timeout: 5000,
+      maximumAge: 0,
     }
   );
 
@@ -44,16 +49,26 @@ document.getElementById("start").addEventListener("click", function () {
   });
 
   // subscribe to position changes
-  navigator.geolocation.watchPosition(function (position) {
-    elmApp.ports.incomingGeoData.send(
-      calculateDistance(
-        startPos.coords.latitude,
-        startPos.coords.longitude,
-        position.coords.latitude,
-        position.coords.longitude
-      )
-    );
-  });
+  navigator.geolocation.watchPosition(
+    function (position) {
+      elmApp.ports.incomingGeoData.send(
+        calculateDistance(
+          startPos.coords.latitude,
+          startPos.coords.longitude,
+          position.coords.latitude,
+          position.coords.longitude
+        )
+      );
+    },
+    function error(err) {
+      alert("watchPosition ERROR(" + err.code + "): " + err.message);
+    },
+    {
+      enableHighAccuracy: true,
+      timeout: 5000,
+      maximumAge: 0,
+    }
+  );
 });
 
 // If you want your app to work offline and load faster, you can change
