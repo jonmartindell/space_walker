@@ -41,7 +41,7 @@ function getAccuratePositionAndStart(startPos, startEffortTime) {
         getAccuratePositionAndStart(startPos, startEffortTime);
       }
     },
-    function (error) {
+    function (err) {
       alert("getCurrentPosition ERROR(" + err.code + "): " + err.message);
       getAccuratePositionAndStart(startPos, startEffortTime);
     },

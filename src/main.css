@@ -138,3 +138,11 @@ aside {
   position: relative;
   top: -857px;
 }
+
+#currentAccuracy {
+  color: #d6e3f6;
+  font-family: Arial;
+  font-size: 15px;
+  position: relative;
+  top: -857px;
+}
