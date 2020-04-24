@@ -4,7 +4,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/space_walker/favicon.ico"
   },
   {
-    "revision": "b50db07967f9ea93c526e6e99f51c14a",
+    "revision": "fa8ae6670582fb226138b69b6c7e677a",
     "url": "/space_walker/index.html"
   },
   {
@@ -20,12 +20,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/space_walker/shuttle.png"
   },
   {
-    "revision": "256d3c328449e7fcdbd5",
-    "url": "/space_walker/static/css/main.2c6e0c24.chunk.css"
+    "revision": "c2db893b1e2adfab8d23",
+    "url": "/space_walker/static/css/main.f4faa4fd.chunk.css"
   },
   {
-    "revision": "256d3c328449e7fcdbd5",
-    "url": "/space_walker/static/js/main.256d3c32.chunk.js"
+    "revision": "c2db893b1e2adfab8d23",
+    "url": "/space_walker/static/js/main.c2db893b.chunk.js"
   },
   {
     "revision": "757d13f7d52a626c415d",
