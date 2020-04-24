@@ -22,19 +22,28 @@ Number.prototype.toRad = function () {
   return (this * Math.PI) / 180;
 };
 
-document.getElementById("start").addEventListener("click", function () {
-  // hide intro screen
-  var intro = document.getElementById("intro");
-  intro.parentNode.removeChild(intro);
-
-  // get starting position
-  var startPos;
+function getAccuratePositionAndStart(startPos, startEffortTime) {
   navigator.geolocation.getCurrentPosition(
     function (position) {
+      document.getElementById("currentAccuracy").innerHTML =
+        position.coords.accuracy;
       startPos = position;
+
+      if (startPos.coords.accuracy <= 10) {
+        startElmApp(startPos);
+      } else if (Date.now() - startEffortTime > 30000) {
+        // 30s effort is up, show error and break
+        alert("couldn't get a good enough lock within 30s");
+        document.getElementById("loading").style.display = "none";
+        document.getElementById("intro").style.display = "block";
+      } else {
+        // we still have more time to try again
+        getAccuratePositionAndStart(startPos, startEffortTime);
+      }
     },
     function (error) {
-      alert("Error occurred getting position. Error code: " + error.code);
+      alert("getCurrentPosition ERROR(" + err.code + "): " + err.message);
+      getAccuratePositionAndStart(startPos, startEffortTime);
     },
     {
       enableHighAccuracy: true,
@@ -42,8 +51,16 @@ document.getElementById("start").addEventListener("click", function () {
       maximumAge: 0,
     }
   );
+}
 
-  // start elm app
+function attemptStart() {
+  // get starting position ensuring we have required accuracy
+  var startPos = { coords: { accuracy: 999 } };
+  var startEffortTime = Date.now();
+  getAccuratePositionAndStart(startPos, startEffortTime);
+}
+
+function startElmApp(startPos) {
   var elmApp = Elm.Main.init({
     node: document.getElementById("elm_app"),
   });
@@ -69,7 +86,18 @@ document.getElementById("start").addEventListener("click", function () {
       maximumAge: 0,
     }
   );
-});
+}
+
+window.onload = () => {
+  document.getElementById("start").addEventListener("click", function () {
+    // show loading screen
+    document.getElementById("loading").style.display = "block";
+    // hide intro screen
+    document.getElementById("intro").style.display = "none";
+    // attempt start
+    attemptStart();
+  });
+};
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
