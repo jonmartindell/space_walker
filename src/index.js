@@ -61,6 +61,11 @@ function attemptStart() {
 }
 
 function startElmApp(startPos) {
+  // hide loading screen
+  document.getElementById("loading").style.display = "none";
+  // hide intro screen
+  document.getElementById("intro").style.display = "none";
+
   var elmApp = Elm.Main.init({
     node: document.getElementById("elm_app"),
   });
